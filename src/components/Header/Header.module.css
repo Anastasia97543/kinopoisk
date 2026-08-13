@@ -1,0 +1,65 @@
+.header {
+  position: relative;
+  z-index: 10;
+  height: var(--header-height);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  min-width: 0;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  flex-shrink: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.logoKino {
+  color: var(--color-text);
+}
+
+.logoDom {
+  color: var(--color-accent);
+}
+
+.nav {
+  min-width: 0;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  font-family: "Proxima Nova", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--color-text);
+}

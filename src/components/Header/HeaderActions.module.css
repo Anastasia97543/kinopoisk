@@ -1,0 +1,91 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.search:hover,
+.search:focus-visible,
+.iconButton:hover,
+.iconButton:focus-visible,
+.profile:hover,
+.profile:focus-visible {
+  color: var(--color-text);
+}
+
+.searchIcon,
+.bellIcon,
+.userIcon {
+  display: block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.searchIcon {
+  width: 21px;
+  height: 21px;
+  -webkit-mask-image: url('../../assets/svg/search.svg');
+  mask-image: url('../../assets/svg/search.svg');
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.bellIcon {
+  width: 24px;
+  height: 24px;
+  -webkit-mask-image: url('../../assets/svg/bell.svg');
+  mask-image: url('../../assets/svg/bell.svg');
+}
+
+.profile {
+  display: grid;
+  place-items: center;
+  width: 55px;
+  height: 54px;
+  padding: 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.userIcon {
+  width: 55px;
+  height: 54px;
+  -webkit-mask-image: url('../../assets/svg/user.svg');
+  mask-image: url('../../assets/svg/user.svg');
+}
+
+@media (max-width: 900px) {
+  .actions {
+    gap: 16px;
+  }
+
+  .search span:last-child {
+    display: none;
+  }
+}
