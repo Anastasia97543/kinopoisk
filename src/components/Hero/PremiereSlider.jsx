@@ -1,40 +1,54 @@
+import { useState } from "react";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import clsx from "clsx";
 import arrowIcon from "../../assets/svg/arrow.svg";
-import { Badge } from "../ui/Badge/Badge";
+import { Badge } from "../shared/Badge/Badge";
 import styles from "./PremiereSlider.module.css";
 
+import "swiper/css";
+
 export function PremiereSlider({ items }) {
-  const [front, middle, back] = items;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = items[activeIndex];
 
   return (
     <div className={styles.slider}>
-      <button type="button" className={styles.arrow} aria-label="Назад">
+      <button type="button" className={clsx(styles.arrow, "js-slider-prev")} aria-label="Назад">
         <img src={arrowIcon} alt="" width="34" height="34" />
       </button>
 
       <div className={styles.body}>
-        <div className={styles.stage}>
-          <article className={`${styles.card} ${styles.layer2}`}>
-            <img src={back.poster} alt="" className={styles.poster} />
-          </article>
-          <article className={`${styles.card} ${styles.layer1}`}>
-            <img src={middle.poster} alt="" className={styles.poster} />
-          </article>
-          <article className={`${styles.card} ${styles.layer0}`}>
-            <img
-              src={front.poster}
-              alt={front.title}
-              className={styles.poster}
-            />
-          </article>
-        </div>
+        <Swiper
+          className={styles.swiper}
+          modules={[Navigation]}
+          slidesPerView="auto"
+          spaceBetween={-189}
+          loop
+          watchSlidesProgress
+          navigation={{
+            prevEl: ".js-slider-prev",
+          }}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.realIndex);
+          }}
+        >
+          {items.map((item) => (
+            <SwiperSlide key={item.id} className={styles.slide}>
+              <article className={styles.card}>
+                <img src={item.poster} alt={item.title} className={styles.poster} />
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
         <div className={styles.meta}>
           <p className={styles.title}>
-            {front.title}. {front.subtitle}
+            {active.title}. {active.subtitle}
           </p>
           <div className={styles.metaRow}>
-            <Badge>{front.badge}</Badge>
-            <span className={styles.date}>{front.date}</span>
+            <Badge type={active.badgeType}>{active.badge}</Badge>
+            <span className={styles.date}>{active.date}</span>
           </div>
         </div>
       </div>

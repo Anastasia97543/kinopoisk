@@ -1,6 +1,8 @@
-import { Header } from './components/Header/Header'
-import { Hero } from './components/Hero/Hero'
-import styles from './App.module.css'
+import { Header } from "./components/Header/Header";
+import { Hero } from "./components/Hero/Hero";
+import { Advantages } from "./components/Advantages/Advantages";
+import { Catalog } from "./components/Catalog/Catalog";
+import styles from "./App.module.css";
 
 function App() {
   return (
@@ -9,9 +11,11 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <Advantages />
+        <Catalog />
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

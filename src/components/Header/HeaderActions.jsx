@@ -1,4 +1,4 @@
-import styles from './HeaderActions.module.css'
+import styles from "./HeaderActions.module.css";
 
 export function HeaderActions() {
   return (
@@ -8,11 +8,7 @@ export function HeaderActions() {
         <span>Поиск</span>
       </button>
 
-      <button
-        type="button"
-        className={styles.iconButton}
-        aria-label="Уведомления"
-      >
+      <button type="button" className={styles.iconButton} aria-label="Уведомления">
         <span className={styles.bellIcon} aria-hidden="true" />
       </button>
 
@@ -20,5 +16,5 @@ export function HeaderActions() {
         <span className={styles.userIcon} aria-hidden="true" />
       </button>
     </div>
-  )
+  );
 }

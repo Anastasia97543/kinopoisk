@@ -6,17 +6,19 @@
 .inner {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 40px;
 }
 
 .content {
-  flex: 0 1 560px;
+  flex: 0 1 48%;
   min-width: 0;
+  max-width: 560px;
+  text-align: left;
 }
 
 .title {
   margin-bottom: 24px;
-  font-size: clamp(36px, 3.5vw, 56px);
+  font-size: 56px;
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -32,22 +34,8 @@
 }
 
 .visual {
-  flex: 0 0 auto;
+  flex: 1 1 52%;
+  min-width: 0;
   display: flex;
-  align-items: center;
-}
-
-.content {
-  flex-basis: auto;
-  max-width: 640px;
-  margin-inline: auto;
-  text-align: center;
-}
-
-.text {
-  margin-inline: auto;
-}
-
-.visual {
-  justify-content: center;
+  justify-content: flex-end;
 }
