@@ -1,0 +1,48 @@
+.section {
+  padding-block: 8px 96px;
+}
+
+.title {
+  margin-bottom: 28px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.swiper {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.slide {
+  height: auto;
+}
+
+.arrow {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+
+.arrow img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  transform: scaleX(-1);
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

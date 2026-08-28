@@ -1,11 +1,11 @@
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     lint:
-      glob: "*.{js,jsx}"
+      # glob: "*.{js,jsx,ts,tsx}"
       run: npx oxlint --fix {staged_files}
       stage_fixed: true
-    format:
-      glob: "*.{js,jsx,css,json}"
-      run: npx oxfmt {staged_files}
-      stage_fixed: true
+    # format:
+    #   glob: "*.{js,jsx,ts,tsx,css,json}"
+    #   run: npx oxfmt {staged_files}
+    #   stage_fixed: true
