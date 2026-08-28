@@ -1,0 +1,29 @@
+.card {
+  min-width: 0;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.rating {
+  color: var(--color-accent);
+}
+
+.title {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}

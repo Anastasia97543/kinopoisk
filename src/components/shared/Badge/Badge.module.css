@@ -2,12 +2,19 @@
   display: inline-flex;
   align-items: center;
   padding: 1px 8px;
-  border: 1px solid var(--color-accent);
+  border: 1px solid currentColor;
   border-radius: 4px;
   background-color: transparent;
-  color: var(--color-accent);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   white-space: nowrap;
+}
+
+.premiere {
+  color: var(--color-accent);
+}
+
+.soon {
+  color: var(--color-text-muted);
 }

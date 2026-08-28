@@ -17,20 +17,16 @@
       rgba(11, 6, 24, 0.82) 45%,
       rgba(11, 6, 24, 1) 100%
     ),
-    url('/bg.png');
+    url("/bg.png");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
 }
 
 .bg::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 70% 50% at 70% 20%,
-    rgba(88, 40, 160, 0.25),
-    transparent 70%
-  );
+  background: radial-gradient(ellipse 70% 50% at 70% 20%, rgba(88, 40, 160, 0.25), transparent 70%);
   pointer-events: none;
 }
