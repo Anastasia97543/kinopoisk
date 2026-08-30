@@ -3,7 +3,7 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
 import arrowIcon from "../../../shared/assets/svg/arrow.svg";
-import type { Premiere } from "../../../shared/api/types";
+import type { Premiere } from "../model";
 import { Badge } from "../../../shared/ui/atoms/Badge";
 import styles from "./PremiereSlider.module.css";
 

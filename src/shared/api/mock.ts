@@ -9,21 +9,20 @@ import comedyBaywatch from "../assets/catalog/baywatch.png";
 import comedyBudapest from "../assets/catalog/budapest.png";
 import comedyPool from "../assets/catalog/pool.png";
 import comedyBrassic from "../assets/catalog/brassic.png";
-import type { Advantage, CatalogRowData, Collection, NavLink, Premiere } from "./types";
 
-export const NAV_LINKS: NavLink[] = [
+export const NAV_LINKS = [
   { id: "films", label: "Фильмы", href: "#films" },
   { id: "series", label: "Сериалы", href: "#series" },
   { id: "collections", label: "Подборки", href: "#collections" },
 ];
 
-export const PREMIERES: Premiere[] = [
+export const PREMIERES = [
   {
     id: 1,
     title: "Бесстыжие",
     subtitle: "11 сезон. Финал",
     badge: "Премьера",
-    badgeType: "premiere",
+    badgeType: "premiere" as const,
     date: "12 декабря",
     poster: firstCard,
   },
@@ -32,7 +31,7 @@ export const PREMIERES: Premiere[] = [
     title: "Мегамозг",
     subtitle: "Против Синдикат",
     badge: "Премьера",
-    badgeType: "premiere",
+    badgeType: "premiere" as const,
     date: "18 декабря",
     poster: secondCard,
   },
@@ -41,13 +40,13 @@ export const PREMIERES: Premiere[] = [
     title: "Однажды в лесу",
     subtitle: "Фильм Люка Жаке",
     badge: "Скоро",
-    badgeType: "soon",
+    badgeType: "soon" as const,
     date: "13 ноября",
     poster: thirdCard,
   },
 ];
 
-export const ADVANTAGES: Advantage[] = [
+export const ADVANTAGES = [
   {
     id: "choice",
     title: "Большой выбор",
@@ -76,7 +75,7 @@ export const ADVANTAGES: Advantage[] = [
 
 const catalogPosters = [comedyBaywatch, comedyBudapest, comedyPool, comedyBrassic];
 
-export const CATALOG: CatalogRowData[] = [
+export const CATALOG = [
   {
     id: "comedies",
     title: "Комедии",
@@ -365,7 +364,7 @@ export const CATALOG: CatalogRowData[] = [
   },
 ];
 
-export const COLLECTIONS: Collection[] = [
+export const COLLECTIONS = [
   { id: "comics", title: "Любителям комиксов", image: firstCard },
   { id: "fantasy-classics", title: "Классика фэнтези", image: thirdCard },
   { id: "anime", title: "Японские мультфильмы", image: comedyPool },

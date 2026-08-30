@@ -1,12 +1,6 @@
-import type { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 import styles from "./Button.module.css";
-
-type ButtonColor = "accent" | "muted" | "ghost";
-
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  color?: ButtonColor;
-};
+import type { ButtonProps } from "./Button.types";
 
 export function Button({
   children,
@@ -16,11 +10,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button
-      type={type}
-      className={clsx(styles.button, styles[color], className)}
-      {...props}
-    >
+    <button type={type} className={clsx(styles.button, styles[color], className)} {...props}>
       {children}
     </button>
   );
