@@ -1,0 +1,40 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.swiper {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.slide {
+  height: auto;
+}
+
+.arrow {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-top: var(--carousel-arrow-offset, 0);
+  padding: 0;
+}
+
+.arrow img {
+  display: block;
+  width: 34px;
+  height: 34px;
+}
+
+.next img {
+  transform: scaleX(-1);
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

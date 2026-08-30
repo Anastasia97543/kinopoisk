@@ -1,0 +1,11 @@
+.section {
+  padding-block: 8px 96px;
+}
+
+.title {
+  margin-bottom: 28px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
