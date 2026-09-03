@@ -1,11 +1,11 @@
 import styles from "./CollectionCard.module.css";
 
 type CollectionCardProps = {
-  image: string;
   title: string;
+  image: string;
 };
 
-export function CollectionCard({ image, title }: CollectionCardProps) {
+export function CollectionCard({ title, image }: CollectionCardProps) {
   return (
     <article className={styles.card}>
       <img src={image} alt={title} className={styles.image} />

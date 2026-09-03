@@ -1,0 +1,24 @@
+.section {
+  position: relative;
+  padding-block: 24px 72px;
+  background: transparent;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 194px;
+}
+
+.list > li {
+  flex: 0 0 335px;
+  width: 335px;
+}
