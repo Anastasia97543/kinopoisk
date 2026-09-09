@@ -14,11 +14,12 @@
 
 .list {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 194px;
+  gap: 80px;
 }
 
-.list > li {
-  flex: 0 0 335px;
-  width: 335px;
+.item {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
 }

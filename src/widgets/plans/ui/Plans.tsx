@@ -12,7 +12,7 @@ export function Plans() {
 
         <ul className={styles.list}>
           {PLANS.map((plan) => (
-            <li key={plan.id}>
+            <li key={plan.id} className={styles.item}>
               <PlanCard plan={plan} features={PLAN_FEATURES} />
             </li>
           ))}

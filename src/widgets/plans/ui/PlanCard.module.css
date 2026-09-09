@@ -1,8 +1,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 335px;
-  height: 463px;
+  width: max-content;
+  max-width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: var(--radius-md);
 }
@@ -54,15 +55,17 @@
     );
 }
 
-.body {
+.content {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: 36px 28px 8px;
+  width: max-content;
+  max-width: 100%;
+  padding: 26px 30px 0;
 }
 
 .name {
-  margin-bottom: 36px;
+  margin: 0 0 20px;
   font-size: 36px;
   font-weight: 800;
   line-height: 1;
@@ -73,38 +76,43 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+  padding-bottom: 90px;
 }
 
 .feature {
   display: flex;
   align-items: center;
-  min-height: 22px;
-  color: #ffffff;
+  gap: 8px;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+}
+
+.featureLocked {
+  opacity: 0.45;
 }
 
 .featureLabel {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  color: #ffffff;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
   gap: 18px;
-  padding: 28px 20px 32px;
+  margin-top: auto;
+  padding: 30px 0 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .button {
-  width: 202px;
-  min-width: 202px;
-  height: 55px;
-  padding: 0;
-  font-size: 16px;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  padding: 18px 24px;
 }
 
 .price {
