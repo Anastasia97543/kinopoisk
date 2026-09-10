@@ -1,14 +1,20 @@
-import firstCard from "../assets/cards/first-card.png";
-import secondCard from "../assets/cards/second-card.png";
-import thirdCard from "../assets/cards/third-card.png";
-import avatarIcon from "../assets/icons/avatar.png";
-import ironManIcon from "../assets/icons/iron-man.png";
-import yodaIcon from "../assets/icons/magistr-yoda.png";
-import userNerdIcon from "../assets/icons/user-nerds.png";
-import comedyBaywatch from "../assets/catalog/baywatch.png";
-import comedyBudapest from "../assets/catalog/budapest.png";
-import comedyPool from "../assets/catalog/pool.png";
-import comedyBrassic from "../assets/catalog/brassic.png";
+import firstCard from "../../assets/cards/first-card.png";
+import secondCard from "../../assets/cards/second-card.png";
+import thirdCard from "../../assets/cards/third-card.png";
+import avatarIcon from "../../assets/icons/avatar.png";
+import ironManIcon from "../../assets/icons/iron-man.png";
+import yodaIcon from "../../assets/icons/magistr-yoda.png";
+import userNerdIcon from "../../assets/icons/user-nerds.png";
+import comedyBaywatch from "../../assets/catalog/baywatch.png";
+import comedyBudapest from "../../assets/catalog/budapest.png";
+import comedyPool from "../../assets/catalog/pool.png";
+import comedyBrassic from "../../assets/catalog/brassic.png";
+import collectionComics from "../../assets/collections/comics.png";
+import collectionClassics from "../../assets/collections/classics.png";
+import collectionAnime from "../../assets/collections/anime.png";
+import collectionSatire from "../../assets/collections/satire.png";
+import collectionCrime from "../../assets/collections/crime.png";
+import collectionFantasy from "../../assets/collections/fantasy.png";
 
 export const NAV_LINKS = [
   { id: "films", label: "Фильмы", href: "#films" },
@@ -365,10 +371,65 @@ export const CATALOG = [
 ];
 
 export const COLLECTIONS = [
-  { id: "comics", title: "Любителям комиксов", image: firstCard },
-  { id: "fantasy-classics", title: "Классика фэнтези", image: thirdCard },
-  { id: "anime", title: "Японские мультфильмы", image: comedyPool },
-  { id: "satire", title: "Сатирические мультсериалы", image: secondCard },
-  { id: "crime", title: "Криминальная классика", image: comedyBudapest },
-  { id: "british", title: "Британский юмор", image: comedyBrassic },
+  { id: "comics", title: "Любителям комиксов", image: collectionComics },
+  { id: "fantasy-classics", title: "Классика фэнтези", image: collectionClassics },
+  { id: "anime", title: "Японские мультфильмы", image: collectionAnime },
+  { id: "satire", title: "Сатирические мультсериалы", image: collectionSatire },
+  { id: "crime", title: "Криминальная классика", image: collectionCrime },
+  { id: "british", title: "Британский юмор", image: collectionFantasy },
+];
+
+export const PLAN_FEATURES = [
+  { id: "daily", label: "Кино и сериалы на каждый день" },
+  { id: "hits", label: "Суперхиты" },
+  { id: "kids", label: "Всё для детей" },
+  { id: "edu", label: "Образовательные передачи" },
+  { id: "partners", label: "Amediateka и Start" },
+];
+
+export const PLANS = [
+  {
+    id: "lite",
+    name: "ЛАЙТ",
+    price: 250,
+    includedFeatureIds: ["daily"],
+  },
+  {
+    id: "optimum",
+    name: "ОПТИУМ",
+    price: 300,
+    featured: true,
+    includedFeatureIds: ["daily", "hits", "kids"],
+  },
+  {
+    id: "premium",
+    name: "ПРЕМИУМ",
+    price: 400,
+    includedFeatureIds: ["daily", "hits", "kids", "edu", "partners"],
+  },
+];
+
+export const DISCOUNTS = [
+  {
+    id: "activity",
+    title: "Скидка 50% на активность в сервисе",
+    paragraphs: [
+      "Смотри кино, принимай участие в развитие сервиса: пиши рецензии, собирай подборки из фильмов и сериалов, проходи квизы.",
+      "Копи баллы, и получай скидку 50% на любой тариф при следующей оплате подписки на КиноДом",
+    ],
+    buttonLabel: "Подробнее",
+    buttonColor: "ghost" as const,
+    icon: userNerdIcon,
+  },
+  {
+    id: "student",
+    title: "Скидка для студентов 50%",
+    paragraphs: [
+      "Просто приложи фото действующего студенческого билета при оформлении подписки и наслаждайся кино!",
+      "Важно! Скидка действует до конца текущего года. Студенческая скидка не суммируется с другими скидками и акциями сервиса",
+    ],
+    buttonLabel: "Я студент, я хочу скидку!",
+    buttonColor: "accent" as const,
+    icon: yodaIcon,
+  },
 ];

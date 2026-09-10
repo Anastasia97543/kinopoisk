@@ -2,7 +2,7 @@ import { Children, useState, type ReactNode } from "react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
-import arrowIcon from "../../../assets/svg/arrow.svg";
+import arrowIcon from "../../../../assets/svg/arrow.svg";
 import styles from "./Carousel.module.css";
 
 import "swiper/css";
@@ -37,7 +37,7 @@ export function Carousel({
     <div className={clsx(styles.row, className)}>
       <button
         type="button"
-        className={clsx(styles.arrow, styles.prev)}
+        className={clsx(styles.arrow, styles.prev, isBeginning && styles.hidden)}
         aria-label={prevLabel}
         disabled={isBeginning}
         onClick={() => swiper?.slidePrev()}
@@ -66,7 +66,7 @@ export function Carousel({
 
       <button
         type="button"
-        className={clsx(styles.arrow, styles.next)}
+        className={clsx(styles.arrow, styles.next, isEnd && styles.hidden)}
         aria-label={nextLabel}
         disabled={isEnd}
         onClick={() => swiper?.slideNext()}

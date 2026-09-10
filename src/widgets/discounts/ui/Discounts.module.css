@@ -1,0 +1,23 @@
+.section {
+  position: relative;
+  padding-block: 24px 96px;
+  background: transparent;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px 100px;
+}
+
+.list > li {
+  max-width: 620px;
+}

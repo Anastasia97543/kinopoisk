@@ -42,8 +42,8 @@
 .searchIcon {
   width: 21px;
   height: 21px;
-  -webkit-mask-image: url("../../../shared/assets/svg/search.svg");
-  mask-image: url("../../../shared/assets/svg/search.svg");
+  -webkit-mask-image: url("../../../assets/svg/search.svg");
+  mask-image: url("../../../assets/svg/search.svg");
 }
 
 .iconButton {
@@ -59,8 +59,8 @@
 .bellIcon {
   width: 24px;
   height: 24px;
-  -webkit-mask-image: url("../../../shared/assets/svg/bell.svg");
-  mask-image: url("../../../shared/assets/svg/bell.svg");
+  -webkit-mask-image: url("../../../assets/svg/bell.svg");
+  mask-image: url("../../../assets/svg/bell.svg");
 }
 
 .profile {
@@ -76,6 +76,6 @@
 .userIcon {
   width: 55px;
   height: 54px;
-  -webkit-mask-image: url("../../../shared/assets/svg/user.svg");
-  mask-image: url("../../../shared/assets/svg/user.svg");
+  -webkit-mask-image: url("../../../assets/svg/user.svg");
+  mask-image: url("../../../assets/svg/user.svg");
 }

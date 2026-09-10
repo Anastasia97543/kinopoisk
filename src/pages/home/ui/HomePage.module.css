@@ -1,0 +1,23 @@
+.offers {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(
+      48% 46% at 3% 28%,
+      rgba(73, 23, 108, 0.18) 0%,
+      rgba(44, 12, 70, 0.08) 48%,
+      transparent 76%
+    ),
+    radial-gradient(38% 38% at 52% 24%, rgba(68, 24, 112, 0.12) 0%, transparent 74%),
+    radial-gradient(46% 48% at 98% 30%, rgba(111, 17, 59, 0.14) 0%, transparent 76%),
+    radial-gradient(
+      82% 62% at 0% 72%,
+      rgba(178, 12, 46, 0.25) 0%,
+      rgba(125, 7, 37, 0.13) 34%,
+      rgba(65, 5, 27, 0.05) 58%,
+      transparent 78%
+    ),
+    radial-gradient(24% 26% at 100% 62%, rgba(43, 21, 162, 0.07) 0%, transparent 80%);
+}

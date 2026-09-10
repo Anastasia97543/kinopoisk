@@ -1,11 +1,8 @@
 .row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  position: relative;
 }
 
 .swiper {
-  flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
 }
@@ -15,13 +12,24 @@
 }
 
 .arrow {
-  flex-shrink: 0;
+  position: absolute;
+  z-index: 2;
+  top: var(--carousel-arrow-top, 50%);
+  transform: var(--carousel-arrow-shift, translateY(-50%));
   display: grid;
   place-items: center;
   width: 34px;
   height: 34px;
   margin-top: var(--carousel-arrow-offset, 0);
   padding: 0;
+}
+
+.prev {
+  left: -50px;
+}
+
+.next {
+  right: -50px;
 }
 
 .arrow img {
@@ -34,7 +42,7 @@
   transform: scaleX(-1);
 }
 
-.arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
+.hidden {
+  visibility: hidden;
+  pointer-events: none;
 }

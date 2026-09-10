@@ -1,0 +1,25 @@
+.section {
+  position: relative;
+  padding-block: 24px 72px;
+  background: transparent;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.list {
+  display: flex;
+  gap: 80px;
+}
+
+.item {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
+}
