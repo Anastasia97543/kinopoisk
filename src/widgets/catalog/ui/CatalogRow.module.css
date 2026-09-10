@@ -11,5 +11,6 @@
 
 .carousel {
   --carousel-arrow-offset: 74px;
-  align-items: flex-start;
+  --carousel-arrow-top: 0;
+  --carousel-arrow-shift: none;
 }

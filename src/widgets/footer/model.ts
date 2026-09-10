@@ -1,12 +1,21 @@
 export type FooterLink = {
   label: string;
   href: string;
+  icon?: "phone" | "mail";
+};
+
+export type FooterSocial = {
+  id: string;
+  href: string;
+  label: string;
+  icon: "facebook" | "vk" | "instagram";
 };
 
 export type FooterGroup = {
   title: string;
   href?: string;
   links: FooterLink[];
+  socials?: FooterSocial[];
 };
 
 export type FooterColumn = {
@@ -78,13 +87,18 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       {
         title: "Техническая поддержка",
         links: [
-          { label: "8 800 800 80 80", href: "tel:88008008080" },
-          { label: "support@mail.ru", href: "mailto:support@mail.ru" },
+          { label: "8 800 800 80 80", href: "tel:88008008080", icon: "phone" },
+          { label: "support@mail.ru", href: "mailto:support@mail.ru", icon: "mail" },
         ],
       },
       {
         title: "Подписывайтесь на нас",
         links: [],
+        socials: [
+          { id: "facebook", href: "#", label: "Facebook", icon: "facebook" },
+          { id: "vk", href: "#", label: "ВКонтакте", icon: "vk" },
+          { id: "instagram", href: "#", label: "Instagram", icon: "instagram" },
+        ],
       },
     ],
   },

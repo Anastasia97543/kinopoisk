@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     watch: {
-      ignored: ["**/src/shared/assets/**"],
+      ignored: ["**/src/assets/**"],
       usePolling: true,
     },
   },

@@ -1,5 +1,5 @@
 .footer {
-  padding-block: 56px 40px;
+  padding-block: 56px 64px;
   background-color: var(--color-bg);
 }
 
@@ -72,11 +72,43 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .list > li {
   min-width: 0;
+}
+
+.contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contactIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.social img {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .link {

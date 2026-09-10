@@ -1,20 +1,20 @@
-import firstCard from "../assets/cards/first-card.png";
-import secondCard from "../assets/cards/second-card.png";
-import thirdCard from "../assets/cards/third-card.png";
-import avatarIcon from "../assets/icons/avatar.png";
-import ironManIcon from "../assets/icons/iron-man.png";
-import yodaIcon from "../assets/icons/magistr-yoda.png";
-import userNerdIcon from "../assets/icons/user-nerds.png";
-import comedyBaywatch from "../assets/catalog/baywatch.png";
-import comedyBudapest from "../assets/catalog/budapest.png";
-import comedyPool from "../assets/catalog/pool.png";
-import comedyBrassic from "../assets/catalog/brassic.png";
-import collectionComics from "../assets/collections/comics.png";
-import collectionClassics from "../assets/collections/classics.png";
-import collectionAnime from "../assets/collections/anime.png";
-import collectionSatire from "../assets/collections/satire.png";
-import collectionCrime from "../assets/collections/crime.png";
-import collectionFantasy from "../assets/collections/fantasy.png";
+import firstCard from "../../assets/cards/first-card.png";
+import secondCard from "../../assets/cards/second-card.png";
+import thirdCard from "../../assets/cards/third-card.png";
+import avatarIcon from "../../assets/icons/avatar.png";
+import ironManIcon from "../../assets/icons/iron-man.png";
+import yodaIcon from "../../assets/icons/magistr-yoda.png";
+import userNerdIcon from "../../assets/icons/user-nerds.png";
+import comedyBaywatch from "../../assets/catalog/baywatch.png";
+import comedyBudapest from "../../assets/catalog/budapest.png";
+import comedyPool from "../../assets/catalog/pool.png";
+import comedyBrassic from "../../assets/catalog/brassic.png";
+import collectionComics from "../../assets/collections/comics.png";
+import collectionClassics from "../../assets/collections/classics.png";
+import collectionAnime from "../../assets/collections/anime.png";
+import collectionSatire from "../../assets/collections/satire.png";
+import collectionCrime from "../../assets/collections/crime.png";
+import collectionFantasy from "../../assets/collections/fantasy.png";
 
 export const NAV_LINKS = [
   { id: "films", label: "Фильмы", href: "#films" },

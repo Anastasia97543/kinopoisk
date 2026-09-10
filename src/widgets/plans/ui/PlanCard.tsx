@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Button } from "../../../shared/ui/atoms/Button";
-import checkIcon from "../../../shared/assets/svg/check.svg";
-import lockIcon from "../../../shared/assets/svg/lock.svg";
+import doneIcon from "../../../assets/svg/done.svg";
+import lockIcon from "../../../assets/svg/lock.svg";
 import type { Plan, PlanFeature } from "../model";
 import styles from "./PlanCard.module.css";
 
@@ -32,7 +32,7 @@ export function PlanCard({ plan, features }: PlanCardProps) {
                 className={clsx(styles.feature, !included && styles.featureLocked)}
               >
                 <img
-                  src={included ? checkIcon : lockIcon}
+                  src={included ? doneIcon : lockIcon}
                   alt=""
                   width={20}
                   height={20}
