@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { Button } from "../../../shared/ui/atoms/Button";
-import doneIcon from "../../../assets/svg/done.svg";
-import lockIcon from "../../../assets/svg/lock.svg";
+import { Button } from "@/shared/ui/atoms/Button";
+import doneIcon from "@/assets/svg/done.svg";
+import lockIcon from "@/assets/svg/lock.svg";
 import type { Plan, PlanFeature } from "../model";
 import styles from "./PlanCard.module.css";
 

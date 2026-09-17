@@ -2,7 +2,7 @@ import { Children, useState, type ReactNode } from "react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
-import arrowIcon from "../../../../assets/svg/arrow.svg";
+import arrowIcon from "@/assets/svg/arrow.svg";
 import styles from "./Carousel.module.css";
 
 import "swiper/css";

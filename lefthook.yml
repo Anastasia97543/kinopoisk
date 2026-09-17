@@ -3,9 +3,13 @@ pre-commit:
   commands:
     lint:
       glob: "*.{js,jsx,ts,tsx}"
+      exclude:
+        - "src/shared/api/generated/**"
       run: node_modules/.bin/oxlint --fix {staged_files}
       stage_fixed: true
     format:
       glob: "*.{js,jsx,ts,tsx,css,json}"
+      exclude:
+        - "src/shared/api/generated/**"
       run: node_modules/.bin/oxfmt {staged_files}
       stage_fixed: true

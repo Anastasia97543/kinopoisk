@@ -1,6 +1,6 @@
-import { COLLECTIONS } from "../../../shared/api/mock";
-import { Carousel } from "../../../shared/ui/molecules/Carousel";
-import { CollectionCard } from "../../../shared/ui/molecules/CollectionCard";
+import { COLLECTIONS } from "@/shared/api/mock";
+import { Carousel } from "@/shared/ui/molecules/Carousel";
+import { CollectionCard } from "@/shared/ui/molecules/CollectionCard";
 import styles from "./Collections.module.css";
 
 export function Collections() {

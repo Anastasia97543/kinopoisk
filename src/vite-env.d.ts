@@ -1,3 +1,12 @@
+interface ImportMetaEnv {
+  readonly VITE_BASE_URL: string;
+  readonly VITE_ACCESS_API_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
 declare module "*.module.css" {
   const classes: { readonly [key: string]: string };
   export default classes;

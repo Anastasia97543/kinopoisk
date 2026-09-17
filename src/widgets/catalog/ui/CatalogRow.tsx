@@ -1,6 +1,6 @@
 import type { Movie } from "../model";
-import { Carousel } from "../../../shared/ui/molecules/Carousel";
-import { MovieCard } from "../../../shared/ui/molecules/MovieCard";
+import { Carousel } from "@/shared/ui/molecules/Carousel";
+import { MovieCard } from "@/shared/ui/molecules/MovieCard";
 import styles from "./CatalogRow.module.css";
 
 type CatalogRowProps = {
