@@ -1,4 +1,4 @@
-import { Button } from "../../../shared/ui/atoms/Button";
+import { Button } from "@/shared/ui/atoms/Button";
 import type { Discount } from "../model";
 import styles from "./DiscountCard.module.css";
 

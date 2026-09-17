@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import facebookIcon from "../../../assets/svg/facebook.svg";
-import instagramIcon from "../../../assets/svg/instagram.svg";
-import mailIcon from "../../../assets/svg/mail.svg";
-import phoneIcon from "../../../assets/svg/phone.svg";
-import vkIcon from "../../../assets/svg/b.svg";
+import facebookIcon from "@/assets/svg/facebook.svg";
+import instagramIcon from "@/assets/svg/instagram.svg";
+import mailIcon from "@/assets/svg/mail.svg";
+import phoneIcon from "@/assets/svg/phone.svg";
+import vkIcon from "@/assets/svg/b.svg";
 import { FOOTER_COLUMNS } from "../model";
 import styles from "./Footer.module.css";
 

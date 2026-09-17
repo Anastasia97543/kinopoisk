@@ -1,4 +1,4 @@
-import { PLAN_FEATURES, PLANS } from "../../../shared/api/mock";
+import { PLAN_FEATURES, PLANS } from "@/shared/api/mock";
 import { PlanCard } from "./PlanCard";
 import styles from "./Plans.module.css";
 

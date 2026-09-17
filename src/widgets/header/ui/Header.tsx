@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { NAV_LINKS } from "../../../shared/api/mock";
+import { NAV_LINKS } from "@/shared/api/mock";
 import { HeaderActions } from "./HeaderActions";
 import styles from "./Header.module.css";
 

@@ -11,9 +11,11 @@
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
+    "api:generate": "orval --config ./orval.config.ts",
     "prepare": "lefthook install"
   },
   "dependencies": {
+    "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -24,6 +26,7 @@
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^4.5.2",
     "lefthook": "^2.1.10",
+    "orval": "^8.6.2",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
     "typescript": "^7.0.2",

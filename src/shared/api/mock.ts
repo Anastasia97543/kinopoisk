@@ -379,7 +379,29 @@ export const COLLECTIONS = [
   { id: "british", title: "Британский юмор", image: collectionFantasy },
 ];
 
-export const PLAN_FEATURES = [
+type PlanFeature = {
+  id: string;
+  label: string;
+};
+
+type Plan = {
+  id: string;
+  name: string;
+  price: number;
+  featured?: boolean;
+  includedFeatureIds: string[];
+};
+
+type Discount = {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  buttonLabel: string;
+  buttonColor: "accent" | "ghost";
+  icon: string;
+};
+
+export const PLAN_FEATURES: PlanFeature[] = [
   { id: "daily", label: "Кино и сериалы на каждый день" },
   { id: "hits", label: "Суперхиты" },
   { id: "kids", label: "Всё для детей" },
@@ -387,7 +409,7 @@ export const PLAN_FEATURES = [
   { id: "partners", label: "Amediateka и Start" },
 ];
 
-export const PLANS = [
+export const PLANS: Plan[] = [
   {
     id: "lite",
     name: "ЛАЙТ",
@@ -409,7 +431,7 @@ export const PLANS = [
   },
 ];
 
-export const DISCOUNTS = [
+export const DISCOUNTS: Discount[] = [
   {
     id: "activity",
     title: "Скидка 50% на активность в сервисе",
@@ -418,7 +440,7 @@ export const DISCOUNTS = [
       "Копи баллы, и получай скидку 50% на любой тариф при следующей оплате подписки на КиноДом",
     ],
     buttonLabel: "Подробнее",
-    buttonColor: "ghost" as const,
+    buttonColor: "ghost",
     icon: userNerdIcon,
   },
   {
@@ -429,7 +451,7 @@ export const DISCOUNTS = [
       "Важно! Скидка действует до конца текущего года. Студенческая скидка не суммируется с другими скидками и акциями сервиса",
     ],
     buttonLabel: "Я студент, я хочу скидку!",
-    buttonColor: "accent" as const,
+    buttonColor: "accent",
     icon: yodaIcon,
   },
 ];
