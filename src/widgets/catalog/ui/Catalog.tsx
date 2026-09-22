@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react";
 import { CATALOG } from "@/shared/api/mock";
-import { requests, type MoviePopularList200ResultsItem } from "@/shared/api";
-import { getTmdbImage } from "@/shared/lib/getTmdbImage";
-import { formatRating } from "@/shared/lib/format";
+import {
+  DiscoverMovieSortBy,
+  requests,
+  type DiscoverMovie200ResultsItem,
+  type GenreMovieList200GenresItem,
+} from "@/shared/api";
+import { formatRating, getTmdbImage } from "@/shared/lib";
 import { Button } from "@/shared/ui/atoms/Button";
 import type { CatalogRowData, Movie } from "../model";
 import { CatalogRow } from "./CatalogRow";
 import styles from "./Catalog.module.css";
 
-function mapMovies(results: MoviePopularList200ResultsItem[] = []): Movie[] {
+const CATALOG_GENRE_IDS = [35, 18, 14, 53, 9648];
+
+function mapMovies(
+  results: DiscoverMovie200ResultsItem[] = [],
+  namesById: Map<number, string>,
+): Movie[] {
   return results
     .filter((movie) => movie.poster_path)
     .map((movie) => ({
@@ -16,7 +25,10 @@ function mapMovies(results: MoviePopularList200ResultsItem[] = []): Movie[] {
       title: movie.title ?? "",
       rating: formatRating(movie.vote_average),
       kind: "Фильм",
-      genres: movie.release_date?.slice(0, 4) ?? "",
+      genres: (movie.genre_ids ?? [])
+        .map((genreId) => namesById.get(genreId))
+        .filter(Boolean)
+        .join(", "),
       poster: getTmdbImage(movie.poster_path),
     }));
 }
@@ -27,18 +39,38 @@ export function Catalog() {
   useEffect(() => {
     let cancelled = false;
 
-    Promise.all([
-      requests.moviePopularList(),
-      requests.movieNowPlayingList(),
-      requests.movieTopRatedList(),
-    ])
-      .then(([popular, nowPlaying, topRated]) => {
-        if (cancelled) return;
-        setRows([
-          { id: "popular", title: "Популярное", items: mapMovies(popular.data.results) },
-          { id: "now-playing", title: "Сейчас смотрят", items: mapMovies(nowPlaying.data.results) },
-          { id: "top-rated", title: "Лучшие по рейтингу", items: mapMovies(topRated.data.results) },
-        ]);
+    requests
+      .genreMovieList()
+      .then(({ data }) => {
+        const genres = data.genres ?? [];
+        const namesById = new Map(
+          genres.flatMap((genre) =>
+            genre.id != null && genre.name ? [[genre.id, genre.name] as const] : [],
+          ),
+        );
+        const selected = CATALOG_GENRE_IDS.map((id) =>
+          genres.find((genre) => genre.id === id),
+        ).filter((genre): genre is GenreMovieList200GenresItem => genre?.id != null);
+
+        if (selected.length === 0) throw new Error("genres");
+
+        return Promise.all(
+          selected.map((genre) =>
+            requests
+              .discoverMovie({
+                with_genres: String(genre.id),
+                sort_by: DiscoverMovieSortBy.popularitydesc,
+              })
+              .then(({ data: movies }) => ({
+                id: String(genre.id),
+                title: genre.name ?? "",
+                items: mapMovies(movies.results, namesById),
+              })),
+          ),
+        );
+      })
+      .then((nextRows) => {
+        if (!cancelled) setRows(nextRows);
       })
       .catch(() => {
         if (!cancelled) setRows(CATALOG);

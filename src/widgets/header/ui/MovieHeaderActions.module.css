@@ -1,0 +1,81 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.search:hover,
+.search:focus-visible,
+.iconButton:hover,
+.iconButton:focus-visible,
+.avatar:hover,
+.avatar:focus-visible {
+  color: var(--color-text);
+}
+
+.searchIcon,
+.bellIcon {
+  display: block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.searchIcon {
+  width: 21px;
+  height: 21px;
+  -webkit-mask-image: url("../../../assets/svg/search.svg");
+  mask-image: url("../../../assets/svg/search.svg");
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.bellIcon {
+  width: 24px;
+  height: 24px;
+  -webkit-mask-image: url("../../../assets/svg/bell.svg");
+  mask-image: url("../../../assets/svg/bell.svg");
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #3a2a55;
+  background-image: url("../../../assets/svg/user.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+  transition: box-shadow 0.2s ease;
+}
+
+.avatar:hover,
+.avatar:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}

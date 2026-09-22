@@ -1,11 +1,17 @@
+import type { ReactNode } from "react";
 import clsx from "clsx";
 import { NAV_LINKS } from "@/shared/api/mock";
 import { HeaderActions } from "./HeaderActions";
 import styles from "./Header.module.css";
 
-export function Header() {
+type HeaderProps = {
+  overlay?: boolean;
+  actions?: ReactNode;
+};
+
+export function Header({ overlay = false, actions }: HeaderProps) {
   return (
-    <header className={styles.header}>
+    <header className={clsx(styles.header, overlay && styles.overlay)}>
       <div className={clsx("container", styles.inner)}>
         <div className={styles.left}>
           <a href="/" className={styles.logo} aria-label="КиноДом — на главную">
@@ -26,7 +32,7 @@ export function Header() {
           </nav>
         </div>
 
-        <HeaderActions />
+        {actions ?? <HeaderActions />}
       </div>
     </header>
   );

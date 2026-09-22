@@ -4,6 +4,13 @@
   height: var(--header-height);
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 .inner {
   display: flex;
   align-items: center;

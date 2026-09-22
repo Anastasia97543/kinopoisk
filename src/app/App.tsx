@@ -1,4 +1,5 @@
 import { HomePage } from "../pages/home";
+import { MoviePage } from "../pages/movie";
 import styles from "./App.module.css";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className={styles.page}>
       <div className={styles.bg} aria-hidden="true" />
       <HomePage />
+      <MoviePage />
     </div>
   );
 }

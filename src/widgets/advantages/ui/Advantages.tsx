@@ -1,37 +1,7 @@
-import { useEffect, useState } from "react";
 import { ADVANTAGES } from "@/shared/api/mock";
-import { requests } from "@/shared/api";
-import { getTmdbImage } from "@/shared/lib/getTmdbImage";
 import styles from "./Advantages.module.css";
 
 export function Advantages() {
-  const [items, setItems] = useState(ADVANTAGES);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    requests
-      .personPopularList()
-      .then(({ data }) => {
-        const photos = (data.results ?? [])
-          .filter((person) => person.profile_path)
-          .map((person) => getTmdbImage(person.profile_path, "w185"));
-
-        if (cancelled || photos.length === 0) return;
-        setItems(
-          ADVANTAGES.map((item, index) => ({
-            ...item,
-            icon: photos[index] ?? item.icon,
-          })),
-        );
-      })
-      .catch(() => undefined);
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   return (
     <section className={styles.section} aria-labelledby="advantages-title">
       <div className="container">
@@ -40,7 +10,7 @@ export function Advantages() {
         </h2>
 
         <ul className={styles.list}>
-          {items.map((item) => (
+          {ADVANTAGES.map((item) => (
             <li key={item.id} className={styles.item}>
               <img src={item.icon} alt="" className={styles.icon} />
               <h3 className={styles.itemTitle}>{item.title}</h3>
