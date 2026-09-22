@@ -7,7 +7,7 @@ export const api = axios.create({
   baseURL: BASE_URL,
   timeout: 60000,
   params: {
-    language: "ru",
+    language: "ru-RU",
   },
   headers: {
     Authorization: `Bearer ${ACCESS_API_KEY}`,

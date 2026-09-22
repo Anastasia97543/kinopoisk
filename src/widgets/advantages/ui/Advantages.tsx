@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ADVANTAGES } from "@/shared/api/mock";
-import { fetchPersonPhotos } from "@/shared/api";
+import { requests } from "@/shared/api";
+import { getTmdbImage } from "@/shared/lib/getTmdbImage";
 import styles from "./Advantages.module.css";
 
 export function Advantages() {
@@ -9,8 +10,13 @@ export function Advantages() {
   useEffect(() => {
     let cancelled = false;
 
-    fetchPersonPhotos()
-      .then((photos) => {
+    requests
+      .personPopularList()
+      .then(({ data }) => {
+        const photos = (data.results ?? [])
+          .filter((person) => person.profile_path)
+          .map((person) => getTmdbImage(person.profile_path, "w185"));
+
         if (cancelled || photos.length === 0) return;
         setItems(
           ADVANTAGES.map((item, index) => ({

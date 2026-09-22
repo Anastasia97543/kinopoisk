@@ -9,7 +9,6 @@ export default defineConfig({
       client: "axios",
       target: "./src/shared/api/generated/endpoints.ts",
       schemas: "./src/shared/api/generated/model",
-      prettier: true,
     },
   },
 });

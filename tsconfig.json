@@ -18,6 +18,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["src/shared/api/generated"]
+  "include": ["src"]
 }

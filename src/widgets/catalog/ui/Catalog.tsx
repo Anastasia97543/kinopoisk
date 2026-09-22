@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { CATALOG } from "@/shared/api/mock";
-import { fetchMovies, tmdbImage, type TmdbMovie } from "@/shared/api";
+import { requests, type MoviePopularList200ResultsItem } from "@/shared/api";
+import { getTmdbImage } from "@/shared/lib/getTmdbImage";
+import { formatRating } from "@/shared/lib/format";
 import { Button } from "@/shared/ui/atoms/Button";
 import type { CatalogRowData, Movie } from "../model";
 import { CatalogRow } from "./CatalogRow";
 import styles from "./Catalog.module.css";
 
-function mapMovies(results: TmdbMovie[] = []): Movie[] {
+function mapMovies(results: MoviePopularList200ResultsItem[] = []): Movie[] {
   return results
     .filter((movie) => movie.poster_path)
     .map((movie) => ({
       id: String(movie.id),
-      title: movie.title,
-      rating: Number((movie.vote_average ?? 0).toFixed(1)),
+      title: movie.title ?? "",
+      rating: formatRating(movie.vote_average),
       kind: "Фильм",
       genres: movie.release_date?.slice(0, 4) ?? "",
-      poster: tmdbImage(movie.poster_path),
+      poster: getTmdbImage(movie.poster_path),
     }));
 }
 
@@ -25,27 +27,22 @@ export function Catalog() {
   useEffect(() => {
     let cancelled = false;
 
-    async function load() {
-      try {
-        const [popular, nowPlaying, topRated] = await Promise.all([
-          fetchMovies("/3/movie/popular"),
-          fetchMovies("/3/movie/now_playing"),
-          fetchMovies("/3/movie/top_rated"),
-        ]);
-
+    Promise.all([
+      requests.moviePopularList(),
+      requests.movieNowPlayingList(),
+      requests.movieTopRatedList(),
+    ])
+      .then(([popular, nowPlaying, topRated]) => {
         if (cancelled) return;
-
         setRows([
-          { id: "popular", title: "Популярное", items: mapMovies(popular) },
-          { id: "now-playing", title: "Сейчас смотрят", items: mapMovies(nowPlaying) },
-          { id: "top-rated", title: "Лучшие по рейтингу", items: mapMovies(topRated) },
+          { id: "popular", title: "Популярное", items: mapMovies(popular.data.results) },
+          { id: "now-playing", title: "Сейчас смотрят", items: mapMovies(nowPlaying.data.results) },
+          { id: "top-rated", title: "Лучшие по рейтингу", items: mapMovies(topRated.data.results) },
         ]);
-      } catch {
+      })
+      .catch(() => {
         if (!cancelled) setRows(CATALOG);
-      }
-    }
-
-    void load();
+      });
 
     return () => {
       cancelled = true;

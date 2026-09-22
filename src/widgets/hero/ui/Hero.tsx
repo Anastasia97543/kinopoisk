@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { PREMIERES } from "@/shared/api/mock";
-import { fetchMovies, tmdbImage } from "@/shared/api";
+import { requests } from "@/shared/api";
+import { getTmdbImage } from "@/shared/lib/getTmdbImage";
+import { formatRuDate } from "@/shared/lib/format";
 import { Button } from "@/shared/ui/atoms/Button";
 import type { Premiere } from "../model";
 import { PremiereSlider } from "./PremiereSlider";
 import styles from "./Hero.module.css";
-
-function formatDate(iso?: string) {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
-}
 
 export function Hero() {
   const [premieres, setPremieres] = useState<Premiere[]>(PREMIERES);
@@ -18,29 +15,27 @@ export function Hero() {
   useEffect(() => {
     let cancelled = false;
 
-    async function load() {
-      try {
-        const upcoming = await fetchMovies("/3/movie/upcoming");
-        const mapped: Premiere[] = upcoming
+    requests
+      .movieUpcomingList()
+      .then(({ data }) => {
+        const mapped: Premiere[] = (data.results ?? [])
           .filter((movie) => movie.poster_path)
           .slice(0, 3)
           .map((movie, index) => ({
-            id: movie.id,
-            title: movie.title,
+            id: movie.id ?? index,
+            title: movie.title ?? "",
             subtitle: movie.overview?.split(". ")[0] ?? "",
             badge: index === 2 ? "Скоро" : "Премьера",
             badgeType: index === 2 ? "soon" : "premiere",
-            date: formatDate(movie.release_date),
-            poster: tmdbImage(movie.poster_path, "w780"),
+            date: formatRuDate(movie.release_date),
+            poster: getTmdbImage(movie.poster_path, "w780"),
           }));
 
         if (!cancelled && mapped.length > 0) setPremieres(mapped);
-      } catch {
+      })
+      .catch(() => {
         if (!cancelled) setPremieres(PREMIERES);
-      }
-    }
-
-    void load();
+      });
 
     return () => {
       cancelled = true;

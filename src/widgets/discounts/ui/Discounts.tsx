@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { DISCOUNTS } from "@/shared/api/mock";
-import { fetchPersonPhotos } from "@/shared/api";
+import { requests } from "@/shared/api";
+import { getTmdbImage } from "@/shared/lib/getTmdbImage";
 import { DiscountCard } from "./DiscountCard";
 import styles from "./Discounts.module.css";
 
@@ -10,8 +11,13 @@ export function Discounts() {
   useEffect(() => {
     let cancelled = false;
 
-    fetchPersonPhotos()
-      .then((photos) => {
+    requests
+      .personPopularList()
+      .then(({ data }) => {
+        const photos = (data.results ?? [])
+          .filter((person) => person.profile_path)
+          .map((person) => getTmdbImage(person.profile_path, "w185"));
+
         if (cancelled || photos.length < 6) return;
         setItems(
           DISCOUNTS.map((item, index) => ({
