@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
-import { NAV_LINKS } from "@/shared/api/mock";
+import { NAV_LINKS } from "../model";
 import { HeaderActions } from "./HeaderActions";
 import styles from "./Header.module.css";
 

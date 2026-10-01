@@ -45,7 +45,13 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
           {items.map((item) => (
             <SwiperSlide key={item.id} className={styles.slide}>
               <article className={styles.card}>
-                <img src={item.poster} alt={item.title} className={styles.poster} />
+                <div className={styles.posterLink}>
+                  {item.poster ? (
+                    <img src={item.poster} alt={item.title} className={styles.poster} />
+                  ) : (
+                    <span className={styles.placeholder} />
+                  )}
+                </div>
               </article>
             </SwiperSlide>
           ))}

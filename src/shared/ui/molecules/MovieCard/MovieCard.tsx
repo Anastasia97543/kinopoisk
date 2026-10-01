@@ -10,7 +10,11 @@ type MovieCardProps = {
 export function MovieCard({ poster, title, rating, caption }: MovieCardProps) {
   return (
     <article className={styles.card}>
-      <img src={poster} alt={title} className={styles.poster} />
+      {poster ? (
+        <img src={poster} alt={title} className={styles.poster} />
+      ) : (
+        <span className={styles.placeholder} aria-hidden="true" />
+      )}
       <p className={styles.caption}>
         <span className={styles.rating}>{rating}</span>
         {caption ? ` • ${caption}` : null}

@@ -30,19 +30,15 @@
   display: block;
   flex-shrink: 0;
   background-color: currentColor;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
-  -webkit-mask-size: contain;
   mask-size: contain;
 }
 
 .searchIcon {
   width: 21px;
   height: 21px;
-  -webkit-mask-image: url("../../../assets/svg/search.svg");
-  mask-image: url("../../../assets/svg/search.svg");
+  mask-image: url("@/assets/svg/search.svg");
 }
 
 .iconButton {
@@ -58,8 +54,7 @@
 .bellIcon {
   width: 24px;
   height: 24px;
-  -webkit-mask-image: url("../../../assets/svg/bell.svg");
-  mask-image: url("../../../assets/svg/bell.svg");
+  mask-image: url("@/assets/svg/bell.svg");
 }
 
 .avatar {
@@ -68,7 +63,7 @@
   padding: 0;
   border-radius: 50%;
   background-color: #3a2a55;
-  background-image: url("../../../assets/svg/user.svg");
+  background-image: url("@/assets/svg/user.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px 22px;

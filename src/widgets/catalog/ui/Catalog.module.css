@@ -13,3 +13,10 @@
 .footer {
   margin-top: 8px;
 }
+
+.empty {
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CATALOG } from "@/shared/api/mock";
 import {
   DiscoverMovieSortBy,
   requests,
@@ -12,14 +11,25 @@ import type { CatalogRowData, Movie } from "../model";
 import { CatalogRow } from "./CatalogRow";
 import styles from "./Catalog.module.css";
 
-const CATALOG_GENRE_IDS = [35, 18, 14, 53, 9648];
+const COMEDY_GENRE = 35;
+const DRAMA_GENRE = 18;
+const FANTASY_GENRE = 14;
+const THRILLER_GENRE = 53;
+const DETECTIVE_GENRE = 9648;
+const CATALOG_GENRE_IDS = [
+  COMEDY_GENRE,
+  DRAMA_GENRE,
+  FANTASY_GENRE,
+  THRILLER_GENRE,
+  DETECTIVE_GENRE,
+];
 
 function mapMovies(
   results: DiscoverMovie200ResultsItem[] = [],
   namesById: Map<number, string>,
 ): Movie[] {
   return results
-    .filter((movie) => movie.poster_path)
+    .filter((movie) => movie.id)
     .map((movie) => ({
       id: String(movie.id),
       title: movie.title ?? "",
@@ -34,7 +44,8 @@ function mapMovies(
 }
 
 export function Catalog() {
-  const [rows, setRows] = useState<CatalogRowData[]>(CATALOG);
+  const [rows, setRows] = useState<CatalogRowData[]>([]);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,10 +81,16 @@ export function Catalog() {
         );
       })
       .then((nextRows) => {
-        if (!cancelled) setRows(nextRows);
+        if (!cancelled) {
+          setFailed(false);
+          setRows(nextRows);
+        }
       })
       .catch(() => {
-        if (!cancelled) setRows(CATALOG);
+        if (!cancelled) {
+          setFailed(true);
+          setRows([]);
+        }
       });
 
     return () => {
@@ -87,6 +104,8 @@ export function Catalog() {
         <h2 id="catalog-title" className={styles.title}>
           Каталог фильмов и сериалов
         </h2>
+
+        {failed ? <p className={styles.empty}>Не удалось загрузить каталог</p> : null}
 
         {rows.map((row) => (
           <CatalogRow key={row.id} title={row.title} items={row.items} />

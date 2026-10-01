@@ -1,4 +1,4 @@
-import { ADVANTAGES } from "@/shared/api/mock";
+import { ADVANTAGES } from "../model";
 import styles from "./Advantages.module.css";
 
 export function Advantages() {

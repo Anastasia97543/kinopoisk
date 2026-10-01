@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { PREMIERES } from "@/shared/api/mock";
 import { requests } from "@/shared/api";
 import { formatRuDate, getTmdbImage } from "@/shared/lib";
 import { Button } from "@/shared/ui/atoms/Button";
@@ -9,7 +8,7 @@ import { PremiereSlider } from "./PremiereSlider";
 import styles from "./Hero.module.css";
 
 export function Hero() {
-  const [premieres, setPremieres] = useState<Premiere[]>(PREMIERES);
+  const [premieres, setPremieres] = useState<Premiere[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -17,24 +16,21 @@ export function Hero() {
     requests
       .movieUpcomingList()
       .then(({ data }) => {
-        const mapped: Premiere[] = (data.results ?? [])
-          .filter((movie) => movie.poster_path || movie.backdrop_path)
-          .slice(0, 3)
-          .map((movie, index) => ({
-            id: movie.id ?? index,
-            title: movie.title ?? "",
-            subtitle: movie.overview?.split(". ")[0] ?? "",
-            badge: index === 2 ? "Скоро" : "Премьера",
-            badgeType: index === 2 ? "soon" : "premiere",
-            date: formatRuDate(movie.release_date),
-            poster:
-              getTmdbImage(movie.poster_path, "w780") || getTmdbImage(movie.backdrop_path, "w780"),
-          }));
+        const mapped: Premiere[] = (data.results ?? []).slice(0, 3).map((movie, index) => ({
+          id: movie.id ?? index,
+          title: movie.title ?? "",
+          subtitle: movie.overview?.split(". ")[0] ?? "",
+          badge: index === 2 ? "Скоро" : "Премьера",
+          badgeType: index === 2 ? "soon" : "premiere",
+          date: formatRuDate(movie.release_date),
+          poster:
+            getTmdbImage(movie.poster_path, "w780") || getTmdbImage(movie.backdrop_path, "w780"),
+        }));
 
-        if (!cancelled && mapped.length > 0) setPremieres(mapped);
+        if (!cancelled) setPremieres(mapped);
       })
       .catch(() => {
-        if (!cancelled) setPremieres(PREMIERES);
+        if (!cancelled) setPremieres([]);
       });
 
     return () => {

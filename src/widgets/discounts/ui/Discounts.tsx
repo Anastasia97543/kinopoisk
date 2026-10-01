@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DISCOUNTS } from "@/shared/api/mock";
+import { DISCOUNTS } from "../model";
 import { requests } from "@/shared/api";
 import { getTmdbImage } from "@/shared/lib";
 import { DiscountCard } from "./DiscountCard";

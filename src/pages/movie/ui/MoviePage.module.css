@@ -4,21 +4,38 @@
   background-color: var(--color-bg);
 }
 
-.about {
-  padding-block: 0 80px;
+.heroSpacer {
+  min-height: 180px;
 }
 
-.aboutTitle {
-  margin-bottom: 24px;
+.details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 80px;
+  max-width: 615px;
+  padding-bottom: 80px;
+}
+
+.title {
+  margin-bottom: 28px;
   font-size: 32px;
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.aboutText {
-  max-width: 615px;
+.aboutText,
+.error {
   font-size: 18px;
   font-weight: 400;
   line-height: 1.55;
   color: var(--color-text-muted);
+}
+
+.error {
+  padding-block: 40px 80px;
+}
+
+.catalog {
+  padding-bottom: 96px;
 }

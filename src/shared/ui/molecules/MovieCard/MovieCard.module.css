@@ -2,11 +2,20 @@
   min-width: 0;
 }
 
-.poster {
+.poster,
+.placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
   border-radius: 12px;
+  background-color: #1c1430;
+}
+
+.placeholder {
+  display: block;
+}
+
+.poster {
+  object-fit: cover;
 }
 
 .caption {
