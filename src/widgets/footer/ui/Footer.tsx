@@ -1,9 +1,12 @@
+import type { ReactNode } from "react";
+import { Link } from "react-router";
 import clsx from "clsx";
 import facebookIcon from "@/assets/svg/facebook.svg";
 import instagramIcon from "@/assets/svg/instagram.svg";
 import mailIcon from "@/assets/svg/mail.svg";
 import phoneIcon from "@/assets/svg/phone.svg";
 import vkIcon from "@/assets/svg/b.svg";
+import { ROUTES } from "@/shared/lib";
 import { FOOTER_COLUMNS } from "../model";
 import styles from "./Footer.module.css";
 
@@ -20,15 +23,41 @@ const socialIcons = {
 
 const copyrightYear = new Date().getFullYear();
 
+function SiteLink({
+  href,
+  className,
+  children,
+  label,
+}: {
+  href: string;
+  className?: string;
+  children: ReactNode;
+  label?: string;
+}) {
+  if (href.startsWith("/")) {
+    return (
+      <Link to={href} className={className} aria-label={label}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={className} aria-label={label}>
+      {children}
+    </a>
+  );
+}
+
 export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={clsx("container", styles.inner)}>
         <div className={styles.brand}>
-          <a href="/" className={styles.logo} aria-label="КиноДом — на главную">
+          <SiteLink href={ROUTES.HOME} className={styles.logo} label="КиноДом — на главную">
             <span className={styles.logoKino}>КИНО</span>
             <span className={styles.logoDom}>ДОМ</span>
-          </a>
+          </SiteLink>
           <p className={styles.copyright}>© КиноДом {copyrightYear}</p>
         </div>
 
@@ -38,9 +67,9 @@ export function Footer() {
               {column.groups.map((group) => (
                 <div key={group.title} className={styles.group}>
                   {group.href ? (
-                    <a href={group.href} className={styles.groupTitle}>
+                    <SiteLink href={group.href} className={styles.groupTitle}>
                       {group.title}
-                    </a>
+                    </SiteLink>
                   ) : (
                     <p className={styles.groupTitle}>{group.title}</p>
                   )}
@@ -49,7 +78,7 @@ export function Footer() {
                     <ul className={styles.list}>
                       {group.links.map((link) => (
                         <li key={link.label}>
-                          <a
+                          <SiteLink
                             href={link.href}
                             className={clsx(styles.link, link.icon && styles.contact)}
                           >
@@ -61,7 +90,7 @@ export function Footer() {
                               />
                             ) : null}
                             {link.label}
-                          </a>
+                          </SiteLink>
                         </li>
                       ))}
                     </ul>

@@ -12,8 +12,12 @@ const LIMIT = 2;
 
 function reviewAvatar(path?: string) {
   if (!path) return "";
-  if (path.includes("http")) return path.replace(/^\//, "");
-  return getTmdbImage(path, "w185");
+
+  const isFullAddress = path.includes("http");
+  if (!isFullAddress) return getTmdbImage(path, "w185");
+
+  if (path.startsWith("/")) return path.slice(1);
+  return path;
 }
 
 function reviewDate(iso?: string) {

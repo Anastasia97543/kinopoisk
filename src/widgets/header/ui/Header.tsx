@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 import clsx from "clsx";
+import { ROUTES } from "@/shared/lib";
 import { NAV_LINKS } from "../model";
 import { HeaderActions } from "./HeaderActions";
 import styles from "./Header.module.css";
@@ -14,18 +16,18 @@ export function Header({ overlay = false, actions }: HeaderProps) {
     <header className={clsx(styles.header, overlay && styles.overlay)}>
       <div className={clsx("container", styles.inner)}>
         <div className={styles.left}>
-          <a href="/" className={styles.logo} aria-label="КиноДом — на главную">
+          <Link to={ROUTES.HOME} className={styles.logo} aria-label="КиноДом — на главную">
             <span className={styles.logoKino}>КИНО</span>
             <span className={styles.logoDom}>ДОМ</span>
-          </a>
+          </Link>
 
           <nav className={styles.nav} aria-label="Основная навигация">
             <ul className={styles.navList}>
               {NAV_LINKS.map((link) => (
                 <li key={link.id}>
-                  <a href={link.href} className={styles.navLink}>
+                  <Link to={link.href} className={styles.navLink}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

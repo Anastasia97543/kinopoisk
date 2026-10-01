@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  DiscoverMovieSortBy,
-  requests,
-  type DiscoverMovie200ResultsItem,
-  type GenreMovieList200GenresItem,
-} from "@/shared/api";
+import { DiscoverMovieSortBy, requests, type DiscoverMovie200ResultsItem } from "@/shared/api";
 import { formatRating, getTmdbImage } from "@/shared/lib";
 import { Button } from "@/shared/ui/atoms/Button";
 import type { CatalogRowData, Movie } from "../model";
@@ -54,14 +49,20 @@ export function Catalog() {
       .genreMovieList()
       .then(({ data }) => {
         const genres = data.genres ?? [];
-        const namesById = new Map(
-          genres.flatMap((genre) =>
-            genre.id != null && genre.name ? [[genre.id, genre.name] as const] : [],
-          ),
-        );
-        const selected = CATALOG_GENRE_IDS.map((id) =>
-          genres.find((genre) => genre.id === id),
-        ).filter((genre): genre is GenreMovieList200GenresItem => genre?.id != null);
+        const namesById = new Map<number, string>();
+
+        for (const genre of genres) {
+          if (genre.id != null && genre.name) {
+            namesById.set(genre.id, genre.name);
+          }
+        }
+
+        const selected: typeof genres = [];
+
+        for (const id of CATALOG_GENRE_IDS) {
+          const genre = genres.find((item) => item.id === id);
+          if (genre?.id != null) selected.push(genre);
+        }
 
         if (selected.length === 0) throw new Error("genres");
 

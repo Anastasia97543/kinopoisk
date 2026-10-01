@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import {
   requests,
   type MovieDetails200,
@@ -46,11 +47,8 @@ function mapSimilar(results: MovieSimilar200ResultsItem[] = []): Movie[] {
     }));
 }
 
-type MoviePageProps = {
-  id?: string;
-};
-
-export function MoviePage({ id }: MoviePageProps) {
+export function MoviePage() {
+  const { id } = useParams();
   const [movie, setMovie] = useState<MovieHeroData | null>(null);
   const [genre, setGenre] = useState("Фильмы");
   const [reviews, setReviews] = useState<MovieReviews200ResultsItem[]>([]);

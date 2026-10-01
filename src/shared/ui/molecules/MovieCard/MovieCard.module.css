@@ -2,6 +2,11 @@
   min-width: 0;
 }
 
+.posterLink {
+  display: block;
+  color: inherit;
+}
+
 .poster,
 .placeholder {
   width: 100%;

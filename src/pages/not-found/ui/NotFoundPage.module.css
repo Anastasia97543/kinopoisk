@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  min-height: 50vh;
+  padding-block: 160px 96px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
