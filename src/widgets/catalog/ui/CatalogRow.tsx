@@ -1,3 +1,4 @@
+import { moviePath } from "@/shared/lib";
 import { Carousel } from "@/shared/ui/molecules/Carousel";
 import { MovieCard } from "@/shared/ui/molecules/MovieCard";
 import type { Movie } from "../model";
@@ -23,6 +24,7 @@ export function CatalogRow({ title, items }: CatalogRowProps) {
         {items.map((item) => (
           <MovieCard
             key={item.id}
+            to={moviePath(item.id)}
             poster={item.poster}
             title={item.title}
             rating={item.rating}

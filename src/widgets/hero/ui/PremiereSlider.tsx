@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
 import arrowIcon from "@/assets/svg/arrow.svg";
-import type { Premiere } from "../model";
+import { moviePath } from "@/shared/lib";
 import { Badge } from "@/shared/ui/atoms/Badge";
+import type { Premiere } from "../model";
 import styles from "./PremiereSlider.module.css";
 
 import "swiper/css";
@@ -45,13 +47,13 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
           {items.map((item) => (
             <SwiperSlide key={item.id} className={styles.slide}>
               <article className={styles.card}>
-                <div className={styles.posterLink}>
+                <Link to={moviePath(item.id)} className={styles.posterLink}>
                   {item.poster ? (
                     <img src={item.poster} alt={item.title} className={styles.poster} />
                   ) : (
                     <span className={styles.placeholder} />
                   )}
-                </div>
+                </Link>
               </article>
             </SwiperSlide>
           ))}

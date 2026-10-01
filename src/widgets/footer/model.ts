@@ -30,16 +30,16 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       {
         title: "Меню",
         links: [
-          { label: "Фильмы", href: "#films" },
-          { label: "Сериалы", href: "#series" },
-          { label: "Подборки", href: "#collections" },
+          { label: "Фильмы", href: "/#films" },
+          { label: "Сериалы", href: "/#series" },
+          { label: "Подборки", href: "/#collections" },
         ],
       },
       {
         title: "Подписка",
         links: [
-          { label: "Тарифный план", href: "#plans" },
-          { label: "Акции", href: "#discounts" },
+          { label: "Тарифный план", href: "/#plans" },
+          { label: "Акции", href: "/#discounts" },
           { label: "Подписка за баллы", href: "#" },
         ],
       },
@@ -51,7 +51,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       {
         title: "Кино и сериалы",
         links: [
-          { label: "Весь каталог", href: "#films" },
+          { label: "Весь каталог", href: "/#films" },
           { label: "Комедии", href: "#" },
           { label: "Драмы", href: "#" },
           { label: "Фэнтези", href: "#" },
@@ -76,7 +76,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       },
       {
         title: "Вопросы и ответы",
-        href: "#faq",
+        href: "/#faq",
         links: [],
       },
     ],

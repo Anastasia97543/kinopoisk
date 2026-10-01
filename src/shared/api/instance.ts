@@ -13,8 +13,3 @@ export const api = axios.create({
     Authorization: `Bearer ${ACCESS_API_KEY}`,
   },
 });
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject(error),
-);
