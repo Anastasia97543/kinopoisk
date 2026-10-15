@@ -1,0 +1,58 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as BadgeStories from "./atoms/Badge/Badge.stories";
+import * as ButtonStories from "./atoms/Button/Button.stories";
+import * as CarouselStories from "./molecules/Carousel/Carousel.stories";
+import * as CollectionCardStories from "./molecules/CollectionCard/CollectionCard.stories";
+import * as MovieCardStories from "./molecules/MovieCard/MovieCard.stories";
+
+<Meta title="shared/Документация" />
+
+# Компоненты
+
+Переиспользуемые части интерфейса. Страницы собирают их в блоки, здесь каждая часть показана отдельно. У каждого компонента есть ещё страница Docs: Storybook собирает её сам из пропсов и вариантов ниже.
+
+## Кнопка
+
+Текст передаётся детьми компонента. Цвет задаёт проп `color`.
+
+- `accent` — красная, так кнопка выглядит по умолчанию
+- `muted` — серая
+- `ghost` — прозрачная, с белой обводкой
+
+<Canvas of={ButtonStories.Accent} />
+<Canvas of={ButtonStories.Muted} />
+<Canvas of={ButtonStories.Ghost} />
+
+## Бейдж
+
+Короткая подпись. Текст передаётся детьми, вид задаёт проп `type`.
+
+- `premiere` — красная подпись, на макете это «Премьера»
+- `soon` — серая подпись, на макете это «Скоро»
+
+<Canvas of={BadgeStories.Premiere} />
+<Canvas of={BadgeStories.Soon} />
+
+## Карточка фильма
+
+Постер, рейтинг, подпись и название. Ссылка на страницу фильма задаётся пропом `to`. Пустой `poster` оставляет серую плашку вместо картинки.
+
+<Canvas of={MovieCardStories.WithPoster} />
+<Canvas of={MovieCardStories.WithoutPoster} />
+
+## Карусель
+
+Слайды передаются детьми. Сколько их видно сразу, задаёт `slidesPerView`.
+
+- слайдов больше, чем помещается: в начале видна только «Дальше». Клик по ней открывает середину, где видны обе стрелки, и конец, где «Дальше» скрыта
+- слайдов не больше, чем `slidesPerView`: обе стрелки скрыты
+
+<Canvas of={CarouselStories.CanScroll} />
+<Canvas of={CarouselStories.Fits} />
+
+## Карточка подборки
+
+Название поверх картинки. Пустой `image` оставляет серую плашку.
+
+<Canvas of={CollectionCardStories.WithImage} />
+<Canvas of={CollectionCardStories.WithoutImage} />
