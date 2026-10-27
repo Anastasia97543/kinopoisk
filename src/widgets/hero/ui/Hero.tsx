@@ -24,7 +24,7 @@ export function Hero() {
           badgeType: index === 2 ? "soon" : "premiere",
           date: formatRuDate(movie.release_date),
           poster:
-            getTmdbImage(movie.poster_path, "w780") || getTmdbImage(movie.backdrop_path, "w780"),
+            getTmdbImage(movie.backdrop_path, "w780") || getTmdbImage(movie.poster_path, "w780"),
         }));
 
         if (!cancelled) setPremieres(mapped);

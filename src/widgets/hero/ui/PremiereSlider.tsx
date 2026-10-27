@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { Navigation } from "swiper/modules";
+import { EffectCreative, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
 import arrowIcon from "@/assets/svg/arrow.svg";
@@ -10,16 +10,34 @@ import type { Premiere } from "../model";
 import styles from "./PremiereSlider.module.css";
 
 import "swiper/css";
+import "swiper/css/effect-creative";
 
 type PremiereSliderProps = {
   items: Premiere[];
 };
 
+const SLIDE_MS = 600;
+const META_MS = 200;
+
 export function PremiereSlider({ items }: PremiereSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = items[activeIndex];
+  const [shownIndex, setShownIndex] = useState(0);
+  const [metaVisible, setMetaVisible] = useState(true);
+  const shown = items[shownIndex];
 
-  if (!active) {
+  useEffect(() => {
+    if (activeIndex === shownIndex) return;
+
+    setMetaVisible(false);
+    const timer = window.setTimeout(() => {
+      setShownIndex(activeIndex);
+      setMetaVisible(true);
+    }, META_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, shownIndex]);
+
+  if (!shown) {
     return null;
   }
 
@@ -32,11 +50,28 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
       <div className={styles.body}>
         <Swiper
           className={styles.swiper}
-          modules={[Navigation]}
+          modules={[Navigation, EffectCreative]}
           slidesPerView="auto"
-          spaceBetween={-189}
+          spaceBetween={0}
+          speed={SLIDE_MS}
           loop
-          watchSlidesProgress
+          effect="creative"
+          creativeEffect={{
+            limitProgress: 2,
+            perspective: false,
+            prev: {
+              translate: ["-20%", 0, 0],
+              scale: 0.9,
+              opacity: 0,
+              origin: "left center",
+            },
+            next: {
+              translate: ["189px", 0, 0],
+              scale: 0.9,
+              opacity: 0.7,
+              origin: "left center",
+            },
+          }}
           navigation={{
             prevEl: ".js-slider-prev",
           }}
@@ -59,13 +94,13 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
           ))}
         </Swiper>
 
-        <div className={styles.meta}>
+        <div className={clsx(styles.meta, !metaVisible && styles.metaHidden)}>
           <p className={styles.title}>
-            {active.title}. {active.subtitle}
+            {shown.title}. {shown.subtitle}
           </p>
           <div className={styles.metaRow}>
-            <Badge type={active.badgeType}>{active.badge}</Badge>
-            <span className={styles.date}>{active.date}</span>
+            <Badge type={shown.badgeType}>{shown.badge}</Badge>
+            <span className={styles.date}>{shown.date}</span>
           </div>
         </div>
       </div>

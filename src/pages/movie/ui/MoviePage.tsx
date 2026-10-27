@@ -68,7 +68,7 @@ export function MoviePage() {
 
     Promise.all([
       requests.movieDetails(movieId),
-      requests.movieReviews(movieId),
+      requests.movieReviews(movieId, { language: "en" }),
       requests.movieSimilar(movieId),
     ])
       .then(([details, reviewList, similarList]) => {
