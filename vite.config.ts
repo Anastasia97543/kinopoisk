@@ -25,6 +25,14 @@ export default defineConfig(async () => ({
     projects: [
       {
         extends: true,
+        test: {
+          name: "unit",
+          environment: "node",
+          include: ["src/**/*.test.ts"],
+        },
+      },
+      {
+        extends: true,
         plugins: await storybookTest({
           configDir: path.join(dirname, ".storybook"),
         }),

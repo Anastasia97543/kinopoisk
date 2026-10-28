@@ -1,12 +1,10 @@
+import { HeaderSearch } from "./HeaderSearch";
 import styles from "./HeaderActions.module.css";
 
 export function HeaderActions() {
   return (
     <div className={styles.actions}>
-      <button type="button" className={styles.search}>
-        <span className={styles.searchIcon} aria-hidden="true" />
-        <span>Поиск</span>
-      </button>
+      <HeaderSearch buttonClassName={styles.search} iconClassName={styles.searchIcon} />
 
       <button type="button" className={styles.iconButton} aria-label="Уведомления">
         <span className={styles.bellIcon} aria-hidden="true" />
