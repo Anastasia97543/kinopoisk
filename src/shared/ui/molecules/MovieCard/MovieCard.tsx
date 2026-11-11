@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { LazyImage } from "@/shared/ui/atoms";
 import styles from "./MovieCard.module.css";
 
 type MovieCardProps = {
@@ -14,7 +15,7 @@ export function MovieCard({ poster, title, rating, caption, to }: MovieCardProps
     <article className={styles.card}>
       <Link to={to} className={styles.posterLink}>
         {poster ? (
-          <img src={poster} alt={title} className={styles.poster} />
+          <LazyImage src={poster} alt={title} className={styles.poster} />
         ) : (
           <span className={styles.placeholder} aria-hidden="true" />
         )}

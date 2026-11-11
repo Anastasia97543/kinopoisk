@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { EffectCreative, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,6 +23,9 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [shownIndex, setShownIndex] = useState(0);
   const [metaVisible, setMetaVisible] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [clamped, setClamped] = useState(false);
+  const titleRef = useRef<HTMLParagraphElement>(null);
   const shown = items[shownIndex];
 
   useEffect(() => {
@@ -30,12 +33,20 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
 
     setMetaVisible(false);
     const timer = window.setTimeout(() => {
+      setExpanded(false);
       setShownIndex(activeIndex);
       setMetaVisible(true);
     }, META_MS);
 
     return () => window.clearTimeout(timer);
   }, [activeIndex, shownIndex]);
+
+  useLayoutEffect(() => {
+    if (expanded) return;
+    const node = titleRef.current;
+    if (!node) return;
+    setClamped(node.scrollHeight > node.clientHeight + 1);
+  }, [shown, expanded, metaVisible]);
 
   if (!shown) {
     return null;
@@ -95,13 +106,51 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
         </Swiper>
 
         <div className={clsx(styles.meta, !metaVisible && styles.metaHidden)}>
-          <p className={styles.title}>
+          <p
+            ref={titleRef}
+            className={clsx(styles.title, clamped && styles.titleToggle)}
+            title={clamped ? "Показать полностью" : undefined}
+            role={clamped ? "button" : undefined}
+            tabIndex={clamped ? 0 : undefined}
+            onClick={clamped ? () => setExpanded(true) : undefined}
+            onKeyDown={
+              clamped
+                ? (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setExpanded(true);
+                    }
+                  }
+                : undefined
+            }
+          >
             {shown.title}. {shown.subtitle}
           </p>
           <div className={styles.metaRow}>
-            <Badge type={shown.badgeType}>{shown.badge}</Badge>
+            <Badge type={shown.badgeType} className={styles.badge}>
+              {shown.badge}
+            </Badge>
             <span className={styles.date}>{shown.date}</span>
           </div>
+          {expanded ? (
+            <div
+              className={styles.expand}
+              role="button"
+              tabIndex={0}
+              title="Свернуть"
+              onClick={() => setExpanded(false)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setExpanded(false);
+                }
+              }}
+            >
+              <p className={styles.expandText}>
+                {shown.title}. {shown.subtitle}
+              </p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
