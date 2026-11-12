@@ -1,6 +1,8 @@
 .slider {
   --poster-width: 378px;
   --poster-height: 544px;
+  --meta-gap: 18px;
+  --meta-height: calc(16px * 1.35 * 2 + 10px + 22px);
 
   display: flex;
   align-items: center;
@@ -27,7 +29,8 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-width: 0;
-  gap: 18px;
+  height: calc(var(--poster-height) + var(--meta-gap) + var(--meta-height));
+  gap: var(--meta-gap);
 }
 
 .arrow {
@@ -36,7 +39,7 @@
   place-items: center;
   width: 34px;
   height: 34px;
-  margin-top: calc(-1 * (18px + 70px) / 2);
+  margin-top: calc(-1 * (var(--meta-gap) + var(--meta-height)) / 2);
   padding: 0;
 }
 
@@ -103,7 +106,13 @@
 }
 
 .meta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   max-width: var(--poster-width);
+  height: var(--meta-height);
+  overflow: visible;
   opacity: 1;
   transition: opacity 0.2s ease;
 }
@@ -113,7 +122,70 @@
 }
 
 .title {
+  display: -webkit-box;
   margin-bottom: 10px;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.titleToggle {
+  cursor: pointer;
+}
+
+.titleHidden,
+.metaRowHidden {
+  visibility: hidden;
+}
+
+.expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  padding-bottom: 72px;
+  cursor: pointer;
+}
+
+.expand::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -16px -28px -28px;
+  /* Visible hero color: photo plus the page veil, not the flat page token. */
+  --scrim: #261341;
+  background: linear-gradient(
+    to bottom,
+    rgb(from var(--scrim) r g b / 0) 0,
+    var(--scrim) 24px,
+    var(--scrim) calc(100% - 96px),
+    rgb(from var(--scrim) r g b / 0) 100%
+  );
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent
+  );
+}
+
+.expandText {
+  position: relative;
+  display: block;
+  margin: 0;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.35;
@@ -123,9 +195,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.badge {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .date {
+  flex-shrink: 0;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-accent);

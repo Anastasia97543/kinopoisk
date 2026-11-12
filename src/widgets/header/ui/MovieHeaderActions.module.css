@@ -1,61 +1,7 @@
 .actions {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 30px;
   flex-shrink: 0;
-  color: var(--color-text-muted);
-}
-
-.search {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  color: inherit;
-  transition: color 0.2s ease;
-}
-
-.search:hover,
-.search:focus-visible,
-.iconButton:hover,
-.iconButton:focus-visible,
-.avatar:hover,
-.avatar:focus-visible {
-  color: var(--color-text);
-}
-
-.searchIcon,
-.bellIcon {
-  display: block;
-  flex-shrink: 0;
-  background-color: currentColor;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-}
-
-.searchIcon {
-  width: 21px;
-  height: 21px;
-  mask-image: url("@/assets/svg/search.svg");
-}
-
-.iconButton {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  color: inherit;
-  transition: color 0.2s ease;
-}
-
-.bellIcon {
-  width: 24px;
-  height: 24px;
-  mask-image: url("@/assets/svg/bell.svg");
 }
 
 .avatar {

@@ -1,51 +1,24 @@
-import { useEffect, useRef, useState } from "react";
-import { MovieSearch } from "./MovieSearch";
+import clsx from "clsx";
 import styles from "./HeaderSearch.module.css";
 
-type HeaderSearchProps = {
-  buttonClassName: string;
-  iconClassName: string;
+type HeaderSearchButtonProps = {
+  open: boolean;
+  iconOnly?: boolean;
+  onToggle: () => void;
 };
 
-export function HeaderSearch({ buttonClassName, iconClassName }: HeaderSearchProps) {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-
-    function onPointerDown(event: PointerEvent) {
-      if (!wrapRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open]);
-
+export function HeaderSearchButton({ open, iconOnly = false, onToggle }: HeaderSearchButtonProps) {
   return (
-    <div className={styles.wrap} ref={wrapRef}>
-      <button
-        type="button"
-        className={buttonClassName}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className={iconClassName} aria-hidden="true" />
-        <span>Поиск</span>
-      </button>
-      {open ? <MovieSearch onClose={() => setOpen(false)} /> : null}
-    </div>
+    <button
+      type="button"
+      className={clsx(styles.button, iconOnly && styles.iconOnly)}
+      data-search=""
+      aria-label={iconOnly ? "Поиск" : undefined}
+      aria-expanded={open}
+      onClick={onToggle}
+    >
+      <span className={styles.icon} aria-hidden="true" />
+      {iconOnly ? null : <span>Поиск</span>}
+    </button>
   );
 }

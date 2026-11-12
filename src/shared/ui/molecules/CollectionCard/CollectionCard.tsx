@@ -1,3 +1,4 @@
+import { LazyImage } from "@/shared/ui/atoms";
 import styles from "./CollectionCard.module.css";
 
 type CollectionCardProps = {
@@ -9,7 +10,7 @@ export function CollectionCard({ title, image }: CollectionCardProps) {
   return (
     <article className={styles.card}>
       {image ? (
-        <img src={image} alt={title} className={styles.image} />
+        <LazyImage src={image} alt={title} className={styles.image} />
       ) : (
         <span className={styles.placeholder} aria-hidden="true" />
       )}

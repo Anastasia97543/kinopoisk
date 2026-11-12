@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
+import heartSvg from "@/assets/icons/heart.svg?raw";
+import { isFavorite, toggleFavorite } from "@/shared/lib";
 import { Button } from "@/shared/ui/atoms/Button";
 import type { MovieHeroData } from "../model";
 import styles from "./MovieHero.module.css";
@@ -9,8 +11,14 @@ type MovieHeroProps = {
 };
 
 export function MovieHero({ movie }: MovieHeroProps) {
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(() => isFavorite(movie.id));
   const meta = [movie.year, movie.genres].filter(Boolean).join(", ");
+
+  useEffect(() => {
+    const sync = () => setLiked(isFavorite(movie.id));
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
+  }, [movie.id]);
 
   return (
     <section
@@ -40,20 +48,40 @@ export function MovieHero({ movie }: MovieHeroProps) {
           <Button color="ghost" type="button">
             Трейлер
           </Button>
-          <button
-            type="button"
-            className={clsx(styles.like, liked && styles.liked)}
-            aria-label={liked ? "Убрать из избранного" : "Добавить в избранное"}
-            aria-pressed={liked}
-            onClick={() => setLiked((value) => !value)}
-          >
-            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" aria-hidden="true">
+          <button type="button" className={styles.tool} aria-label="Добавить в список">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <path
-                d="M11 18.35 9.55 17.03C4.4 12.36 1 9.27 1 5.5 1 2.42 3.42 0 6.5 0 8.24 0 9.91.81 11 2.09 12.09.81 13.76 0 15.5 0 18.58 0 21 2.42 21 5.5c0 3.77-3.4 6.86-8.55 11.54L11 18.35Z"
+                d="M6 2.75h7.1L17.25 6.9V19.25H6V2.75Z"
                 stroke="currentColor"
                 strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12.9 2.75V7.1h4.35"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M11 10.75v5.5M8.25 13.5h5.5"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
               />
             </svg>
+          </button>
+          <button
+            type="button"
+            className={clsx(styles.tool, liked && styles.liked)}
+            aria-label={liked ? "Убрать из избранного" : "Добавить в избранное"}
+            aria-pressed={liked}
+            onClick={() => setLiked(toggleFavorite(movie.id))}
+          >
+            <span
+              className={styles.heart}
+              aria-hidden="true"
+              dangerouslySetInnerHTML={{ __html: heartSvg }}
+            />
           </button>
         </div>
       </div>

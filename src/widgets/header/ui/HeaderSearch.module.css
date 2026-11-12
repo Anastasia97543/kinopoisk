@@ -1,3 +1,28 @@
-.wrap {
-  display: contents;
+.button {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  color: var(--color-text);
+}
+
+.iconOnly {
+  gap: 0;
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+  width: 21px;
+  height: 21px;
+  background-color: currentColor;
+  mask: url("@/assets/svg/search.svg") center / contain no-repeat;
 }
