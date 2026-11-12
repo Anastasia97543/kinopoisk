@@ -73,7 +73,7 @@ export function MovieSearch({ onClose }: MovieSearchProps) {
   const showList = ready && query.trim().length >= MIN_QUERY_LENGTH;
 
   return (
-    <div className={styles.search}>
+    <div className={styles.search} data-search="">
       <label className={styles.field}>
         <span className={styles.icon} aria-hidden="true" />
         <input

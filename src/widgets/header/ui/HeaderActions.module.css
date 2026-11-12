@@ -7,18 +7,11 @@
   color: var(--color-text-muted);
 }
 
-.search {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  color: inherit;
-  transition: color 0.2s ease;
+.fieldSlot {
+  width: 280px;
+  flex-shrink: 0;
 }
 
-.search:hover,
-.search:focus-visible,
 .iconButton:hover,
 .iconButton:focus-visible,
 .profile:hover,
@@ -26,7 +19,6 @@
   color: var(--color-text);
 }
 
-.searchIcon,
 .bellIcon,
 .userIcon {
   display: block;
@@ -35,12 +27,6 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-}
-
-.searchIcon {
-  width: 21px;
-  height: 21px;
-  mask-image: url("@/assets/svg/search.svg");
 }
 
 .iconButton {

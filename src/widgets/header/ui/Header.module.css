@@ -13,12 +13,18 @@
 
 .inner {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  column-gap: 32px;
   height: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gap {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .left {
@@ -68,28 +74,6 @@
 }
 
 .navLink:hover,
-.navLink:focus-visible,
-.search:hover,
-.search:focus-visible {
+.navLink:focus-visible {
   color: var(--color-text);
-}
-
-.search {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  transition: color 0.2s ease;
-}
-
-.searchIcon {
-  display: block;
-  flex-shrink: 0;
-  width: 21px;
-  height: 21px;
-  background-color: currentColor;
-  mask: url("@/assets/svg/search.svg") center / contain no-repeat;
 }
