@@ -29,6 +29,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-width: 0;
+  height: calc(var(--poster-height) + var(--meta-gap) + var(--meta-height));
   gap: var(--meta-gap);
 }
 
@@ -108,8 +109,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   max-width: var(--poster-width);
-  min-height: var(--meta-height);
+  height: var(--meta-height);
+  overflow: visible;
   opacity: 1;
   transition: opacity 0.2s ease;
 }
@@ -133,18 +136,56 @@
   cursor: pointer;
 }
 
+.titleHidden,
+.metaRowHidden {
+  visibility: hidden;
+}
+
 .expand {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   z-index: 4;
-  padding-bottom: 12px;
-  background: var(--color-bg);
+  padding-bottom: 72px;
   cursor: pointer;
 }
 
+.expand::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -16px -28px -28px;
+  /* Visible hero color: photo plus the page veil, not the flat page token. */
+  --scrim: #261341;
+  background: linear-gradient(
+    to bottom,
+    rgb(from var(--scrim) r g b / 0) 0,
+    var(--scrim) 24px,
+    var(--scrim) calc(100% - 96px),
+    rgb(from var(--scrim) r g b / 0) 100%
+  );
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent
+  );
+}
+
 .expandText {
+  position: relative;
+  display: block;
+  margin: 0;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.35;

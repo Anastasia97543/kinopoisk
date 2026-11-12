@@ -4,14 +4,16 @@ import clsx from "clsx";
 import { ROUTES } from "@/shared/lib";
 import { NAV_LINKS } from "../model";
 import { HeaderActions } from "./HeaderActions";
+import { HeaderSearch } from "./HeaderSearch";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
   overlay?: boolean;
   actions?: ReactNode;
+  navSearch?: boolean;
 };
 
-export function Header({ overlay = false, actions }: HeaderProps) {
+export function Header({ overlay = false, actions, navSearch = false }: HeaderProps) {
   return (
     <header className={clsx(styles.header, overlay && styles.overlay)}>
       <div className={clsx("container", styles.inner)}>
@@ -30,6 +32,15 @@ export function Header({ overlay = false, actions }: HeaderProps) {
                   </Link>
                 </li>
               ))}
+              {navSearch ? (
+                <li>
+                  <HeaderSearch
+                    iconOnly
+                    buttonClassName={styles.search}
+                    iconClassName={styles.searchIcon}
+                  />
+                </li>
+              ) : null}
             </ul>
           </nav>
         </div>

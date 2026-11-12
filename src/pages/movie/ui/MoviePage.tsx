@@ -14,8 +14,9 @@ import { Reviews } from "@/widgets/reviews";
 import { Footer } from "@/widgets/footer";
 import styles from "./MoviePage.module.css";
 
-function mapMovie(details: MovieDetails200): MovieHeroData {
+function mapMovie(details: MovieDetails200, id: number): MovieHeroData {
   return {
+    id,
     title: details.title ?? "",
     overview: details.overview ?? "",
     backdrop:
@@ -73,7 +74,7 @@ export function MoviePage() {
     ])
       .then(([details, reviewList, similarList]) => {
         if (cancelled) return;
-        setMovie(mapMovie(details.data));
+        setMovie(mapMovie(details.data, movieId));
         setGenre(details.data.genres?.[0]?.name || "Фильмы");
         setReviews(reviewList.data.results ?? []);
         setSimilar(mapSimilar(similarList.data.results));
@@ -89,7 +90,7 @@ export function MoviePage() {
 
   return (
     <div className={styles.page}>
-      <Header overlay actions={<MovieHeaderActions />} />
+      <Header overlay navSearch actions={<MovieHeaderActions />} />
       <main>
         {movie ? <MovieHero movie={movie} /> : <div className={styles.heroSpacer} />}
 

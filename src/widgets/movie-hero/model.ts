@@ -1,4 +1,5 @@
 export type MovieHeroData = {
+  id: number;
   title: string;
   overview: string;
   backdrop: string;

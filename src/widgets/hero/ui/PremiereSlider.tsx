@@ -108,13 +108,17 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
         <div className={clsx(styles.meta, !metaVisible && styles.metaHidden)}>
           <p
             ref={titleRef}
-            className={clsx(styles.title, clamped && styles.titleToggle)}
-            title={clamped ? "Показать полностью" : undefined}
-            role={clamped ? "button" : undefined}
-            tabIndex={clamped ? 0 : undefined}
-            onClick={clamped ? () => setExpanded(true) : undefined}
+            className={clsx(
+              styles.title,
+              clamped && styles.titleToggle,
+              expanded && styles.titleHidden,
+            )}
+            title={clamped && !expanded ? "Показать полностью" : undefined}
+            role={clamped && !expanded ? "button" : undefined}
+            tabIndex={clamped && !expanded ? 0 : undefined}
+            onClick={clamped && !expanded ? () => setExpanded(true) : undefined}
             onKeyDown={
-              clamped
+              clamped && !expanded
                 ? (event) => {
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
@@ -126,7 +130,7 @@ export function PremiereSlider({ items }: PremiereSliderProps) {
           >
             {shown.title}. {shown.subtitle}
           </p>
-          <div className={styles.metaRow}>
+          <div className={clsx(styles.metaRow, expanded && styles.metaRowHidden)}>
             <Badge type={shown.badgeType} className={styles.badge}>
               {shown.badge}
             </Badge>

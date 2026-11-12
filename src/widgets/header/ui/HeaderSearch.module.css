@@ -1,3 +1,9 @@
 .wrap {
-  display: contents;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.buttonHidden {
+  visibility: hidden;
 }

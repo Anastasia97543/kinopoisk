@@ -75,7 +75,7 @@
   gap: 10px;
 }
 
-.like {
+.tool {
   display: grid;
   place-items: center;
   width: 54px;
@@ -88,12 +88,25 @@
     background-color 0.2s ease;
 }
 
-.like:hover,
-.like:focus-visible {
+.tool:hover,
+.tool:focus-visible {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.liked svg path {
-  fill: var(--color-text);
-  stroke: var(--color-text);
+.heart {
+  display: flex;
+  width: 23px;
+  height: 21px;
+  color: currentColor;
+}
+
+.heart svg {
+  display: block;
+  width: 23px;
+  height: 21px;
+  overflow: visible;
+}
+
+.liked .heart path {
+  fill: currentColor;
 }

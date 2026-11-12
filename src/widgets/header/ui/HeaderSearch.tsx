@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import { MovieSearch } from "./MovieSearch";
 import styles from "./HeaderSearch.module.css";
 
 type HeaderSearchProps = {
   buttonClassName: string;
   iconClassName: string;
+  iconOnly?: boolean;
 };
 
-export function HeaderSearch({ buttonClassName, iconClassName }: HeaderSearchProps) {
+export function HeaderSearch({
+  buttonClassName,
+  iconClassName,
+  iconOnly = false,
+}: HeaderSearchProps) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -37,13 +43,14 @@ export function HeaderSearch({ buttonClassName, iconClassName }: HeaderSearchPro
     <div className={styles.wrap} ref={wrapRef}>
       <button
         type="button"
-        className={buttonClassName}
+        className={clsx(buttonClassName, open && styles.buttonHidden)}
+        aria-label={iconOnly ? "Поиск" : undefined}
         aria-expanded={open}
         aria-haspopup="listbox"
         onClick={() => setOpen((value) => !value)}
       >
         <span className={iconClassName} aria-hidden="true" />
-        <span>Поиск</span>
+        {iconOnly ? null : <span>Поиск</span>}
       </button>
       {open ? <MovieSearch onClose={() => setOpen(false)} /> : null}
     </div>

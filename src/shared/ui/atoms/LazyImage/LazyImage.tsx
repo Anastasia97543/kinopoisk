@@ -26,7 +26,7 @@ export function LazyImage({ src, alt, className }: LazyImageProps) {
       {
         root: null,
         rootMargin: "200px 0px",
-        threshold: 0.01,
+        threshold: 0,
       },
     );
 
@@ -44,6 +44,7 @@ export function LazyImage({ src, alt, className }: LazyImageProps) {
           alt={alt}
           className={clsx(styles.image, !loaded && styles.imageHidden)}
           onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
         />
       ) : null}
     </div>
