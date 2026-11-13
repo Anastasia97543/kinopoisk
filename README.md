@@ -18,7 +18,8 @@ npm run build-storybook  # сборка Storybook
 
 ## Деплой
 
-Прод собирается на Netlify с ветки `main` (`npm run build`, папка `dist`).
+Прод: https://kino-dom.netlify.app
+Собирается на Netlify с ветки `lesson-10` (`npm run build`, папка `dist`).
 
 ## Storybook
 
